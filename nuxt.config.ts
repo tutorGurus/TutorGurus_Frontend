@@ -7,5 +7,7 @@ export default defineNuxtConfig({
     build: {
         transpile: ['vuetify']
     },
-
+    app: {
+        baseURL: '/tutorgurus_frontend/'
+    }
 })
