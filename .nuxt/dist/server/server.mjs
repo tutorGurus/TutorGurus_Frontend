@@ -1,0 +1,1 @@
+export { default } from "file:///Users/avocado/Desktop/TutorGurusProject/TutorGurus_Frontend/node_modules/@nuxt/vite-builder/dist/runtime/vite-node.mjs"
