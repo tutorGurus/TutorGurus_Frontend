@@ -1,5 +1,7 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+    serverMiddleware: [
+        { path: '/api', handler: '~/middleware/proxy.js' },
+      ],
     css: [
         'vuetify/styles/main.sass',
         '@mdi/font/css/materialdesignicons.css'
@@ -8,3 +10,4 @@ export default defineNuxtConfig({
         transpile: ['vuetify']
     },
 })
+
