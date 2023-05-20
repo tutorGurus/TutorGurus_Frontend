@@ -94,7 +94,7 @@ onBeforeUnmount(() => {
 
     <v-main>
       <slot />
-      <NuxtLayout name="footer"></NuxtLayout>
+      <Footer />
     </v-main>
   </v-layout>
 </template>
