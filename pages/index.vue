@@ -40,7 +40,7 @@
       <v-card class="mx-auto pb-16" elevation="0" max-width="1200">
         <v-row>
           <v-spacer></v-spacer>
-          <v-col cols="12" sm="4" lg="4" v-for="(item, i) in 3">
+          <v-col cols="12" sm="4" lg="4" v-for="(i) in 3">
             <Card />
           </v-col>
           <v-spacer></v-spacer>
@@ -280,8 +280,6 @@
 }
 .teacher-bg{
   background-image: url('/footer/bg.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  background-size: contain;
 }
 </style>
