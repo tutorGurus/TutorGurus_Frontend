@@ -92,7 +92,7 @@ onBeforeUnmount(() => {
       />
     </v-dialog>
 
-    <v-main>
+    <v-main style="background-color: #ececec;">
       <slot />
       <Footer />
     </v-main>
@@ -113,6 +113,6 @@ onBeforeUnmount(() => {
   z-index: 4;
 }
 .white-bg {
-  background-color: white !important;
+  background-color: #ececec !important;
 }
 </style>

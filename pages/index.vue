@@ -37,7 +37,7 @@
           <v-btn class="mx-2 text-button font-weight-black" rounded="xl">語言</v-btn>
         </div>
       </div>
-      <v-card class="mx-auto pb-16" elevation="0" max-width="1200">
+      <v-card class="mx-auto pb-16" elevation="0" max-width="1200" style="background-color: transparent;">
         <v-row>
           <v-spacer></v-spacer>
           <v-col cols="12" sm="4" lg="4" v-for="(i) in 3">
@@ -81,7 +81,7 @@
       <div class="text-center mb-16">
         <h1 class="text-h4 font-weight-black">非我們不可的理由</h1>
       </div>
-      <v-card class="mx-auto pb-16" elevation="0" max-width="1200">
+      <v-card class="mx-auto pb-16" elevation="0" max-width="1200" style="background-color: transparent;">
         <v-row>
           <v-spacer></v-spacer>
           <v-col cols="12" md="5">
@@ -158,7 +158,7 @@
       <div class="text-center mb-16">
         <h1 class="text-h4 font-weight-black">嚴選教師流程</h1>
       </div>
-      <v-card class="mx-auto pb-16" elevation="0" max-width="1200">
+      <v-card class="mx-auto pb-16" elevation="0" max-width="1200" style="background-color: transparent;">
         <v-row>
           <v-spacer></v-spacer>
           <v-col cols="12" md="3">

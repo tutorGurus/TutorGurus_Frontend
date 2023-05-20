@@ -9,7 +9,7 @@ const icons = reactive([
 </script>
 
 <template>
-    <v-footer class="py-16">
+    <v-footer class="py-16" style="background-color: #ececec;">
         <v-container>
             <v-card class="mx-auto pb-16" elevation="0" max-width="1200" style="background-color: transparent;">
 
