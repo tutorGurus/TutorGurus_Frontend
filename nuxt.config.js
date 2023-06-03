@@ -12,5 +12,10 @@ export default defineNuxtConfig({
     server: {
     port: process.env.PORT || 3000, // 设置端口号
     },
+    plugins: [
+        {
+            src:'@/plugins/v-calendar', mode: 'client'
+        }
+    ],
 })
 
