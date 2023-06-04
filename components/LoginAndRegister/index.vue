@@ -65,8 +65,8 @@ const login = () => {
       loading.value = false;
     } else {
       const user = {};
-      user.token = response.data;
-      sessionStorage.setItem("user", JSON.stringify(user));
+      const token = useCookie("token");
+      token.value = response.data;
       alert("登入成功!");
       loading.value = false;
       router.push("/user");

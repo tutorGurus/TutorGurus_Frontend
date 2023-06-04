@@ -100,47 +100,44 @@ const major = ref("");
 const requiredRules = [(v) => !!v || "請填寫相關資訊！"];
 
 const register = () => {
-  const userData = sessionStorage.getItem("user");
-  const _user = JSON.parse(userData);
-
+  const { value: token } = useCookie("token");
   const dataPayload = data.value;
-  console.log(JSON.stringify(dataPayload));
   const schoolNamePayload = schoolName.value;
   const majorPayload = major.value;
   if (!dataPayload.name) {
-    console.log("name");
+    alert("請填寫姓名");
     return;
   }
   if (!dataPayload.gender) {
-    console.log("gender");
+    alert("請選擇性別");
     return;
   }
   if (!dataPayload.phone) {
-    console.log("phone");
+    alert("請填寫聯絡電話");
     return;
   }
   if (!dataPayload.address) {
-    console.log("address");
+    alert("請填寫居住地址");
     return;
   }
   if (!dataPayload.birthday.trim()) {
-    console.log("birthday");
+    alert("請選擇生日");
     return;
   }
   if (!dataPayload.degree) {
-    console.log("degree");
-    return;
-  }
-  if (!dataPayload.teaching_category) {
-    console.log("teaching_category");
+    alert("請填寫最高學歷");
     return;
   }
   if (!schoolNamePayload) {
-    console.log("school name");
+    alert("請填寫學校名稱");
     return;
   }
   if (!majorPayload) {
-    console.log("major");
+    alert("請填寫科系名稱");
+    return;
+  }
+  if (!dataPayload.teaching_category) {
+    alert("請選擇教授科目");
     return;
   }
   const params = {
@@ -153,7 +150,7 @@ const register = () => {
     // baseURL: "http://localhost:8000",
     baseURL: "https://tutorgurus-backend.onrender.com",
     headers: {
-      Authorization: `Bearer ${_user.token}`,
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(params),
   })
@@ -170,13 +167,13 @@ const register = () => {
 };
 
 const getUserData = () => {
-  const userData = sessionStorage.getItem("user");
-  const _user = JSON.parse(userData);
+  const { value: token } = useCookie("token");
+
   $fetch(`/user/v1/profile`, {
     // baseURL: "http://localhost:8000",
     baseURL: "https://tutorgurus-backend.onrender.com",
     headers: {
-      Authorization: `Bearer ${_user.token}`,
+      Authorization: `Bearer ${token}`,
     },
   }).then((response) => {
     console.log(response);
@@ -192,9 +189,8 @@ const getUserData = () => {
 };
 
 onMounted(() => {
-  const userData = sessionStorage.getItem("user");
-  console.log(userData);
-  if (userData === null) {
+  const { value: token } = useCookie("token");
+  if (!token) {
     alert("請先登入會員");
     router.push("/");
   } else {

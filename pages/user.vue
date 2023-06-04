@@ -1,23 +1,21 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
+
 const router = useRouter();
 
 const isEditing = ref(false);
 const data = ref({});
 
 const update = () => {
-  const userData = sessionStorage.getItem("user");
-  const _user = JSON.parse(userData);
-  console.log(_user.token);
-  console.error("data", data);
+  const { value: token } = useCookie("token");
   $fetch("/user/v1/profile", {
     method: "PATCH",
     // baseURL: "http://localhost:8000",
     baseURL: "https://tutorgurus-backend.onrender.com",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${_user.token}`,
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(data.value),
   })
@@ -39,14 +37,12 @@ const cancel = () => {
 };
 
 const getUserData = () => {
-  const userData = sessionStorage.getItem("user");
-  const _user = JSON.parse(userData);
-  console.log(_user.token);
+  const { value: token } = useCookie("token");
   $fetch(`/user/v1/profile`, {
     // baseURL: "http://localhost:8000",
     baseURL: "https://tutorgurus-backend.onrender.com",
     headers: {
-      Authorization: `Bearer ${_user.token}`,
+      Authorization: `Bearer ${token}`,
     },
   }).then((response) => {
     console.log(response);
@@ -60,9 +56,8 @@ const getUserData = () => {
 };
 
 onMounted(() => {
-  const userData = sessionStorage.getItem("user");
-  console.log(userData);
-  if (userData === null) {
+  const { value: token } = useCookie("token");
+  if (!token) {
     alert("請先登入會員");
     router.push("/");
   } else {
