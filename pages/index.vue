@@ -32,15 +32,29 @@
       <div class="text-center">
         <h1 class="text-h4 font-weight-black">精選課程</h1>
         <div class="d-flex justify-center pt-6 pb-12">
-          <v-btn class="mx-2 text-button font-weight-black" color="black" rounded="xl">國中</v-btn>
-          <v-btn class="mx-2 text-button font-weight-black" rounded="xl">高中</v-btn>
-          <v-btn class="mx-2 text-button font-weight-black" rounded="xl">語言</v-btn>
+          <v-btn
+            class="mx-2 text-button font-weight-black"
+            color="black"
+            rounded="xl"
+            >國中</v-btn
+          >
+          <v-btn class="mx-2 text-button font-weight-black" rounded="xl"
+            >高中</v-btn
+          >
+          <v-btn class="mx-2 text-button font-weight-black" rounded="xl"
+            >語言</v-btn
+          >
         </div>
       </div>
-      <v-card class="mx-auto pb-16" elevation="0" max-width="1200" style="background-color: transparent;">
+      <v-card
+        class="mx-auto pb-16"
+        elevation="0"
+        max-width="1200"
+        style="background-color: transparent"
+      >
         <v-row>
           <v-spacer></v-spacer>
-          <v-col cols="12" sm="4" lg="4" v-for="(i) in 3">
+          <v-col cols="12" sm="4" lg="4" v-for="i in 3">
             <Card />
           </v-col>
           <v-spacer></v-spacer>
@@ -56,15 +70,17 @@
           <div class="commet-description">
             <h1 class="text-h3 font-weight-black">專業且</h1>
             <h1 class="text-h3 font-weight-black my-3">評分頂尖的導師</h1>
-            <h4 class="mb-10">
-              超過一百萬名學生給予他們的導師五星級評價
-            </h4>
+            <h4 class="mb-10">超過一百萬名學生給予他們的導師五星級評價</h4>
           </div>
           <div class="comment-decorate">
             <v-img src="/comment/Deco.png" width="300" contain></v-img>
           </div>
           <div class="d-flex">
-            <v-btn class="rounded-xl text-white font-weight-black" color="orange-darken-1" variant="flat">
+            <v-btn
+              class="rounded-xl text-white font-weight-black"
+              color="orange-darken-1"
+              variant="flat"
+            >
               開始挑選教師 <v-icon>mdi-arrow-right</v-icon>
             </v-btn>
           </div>
@@ -81,7 +97,12 @@
       <div class="text-center mb-16">
         <h1 class="text-h4 font-weight-black">非我們不可的理由</h1>
       </div>
-      <v-card class="mx-auto pb-16" elevation="0" max-width="1200" style="background-color: transparent;">
+      <v-card
+        class="mx-auto pb-16"
+        elevation="0"
+        max-width="1200"
+        style="background-color: transparent"
+      >
         <v-row>
           <v-spacer></v-spacer>
           <v-col cols="12" md="5">
@@ -94,7 +115,9 @@
                   <v-card-title class="text-h5 font-weight-black">
                     優秀師資
                   </v-card-title>
-                  <p class="px-4 pb-3">平台師資豐富外，教師都們也都擁有豐富的教學經驗，讓學生們都能選擇到合適的教師</p>
+                  <p class="px-4 pb-3">
+                    平台師資豐富外，教師都們也都擁有豐富的教學經驗，讓學生們都能選擇到合適的教師
+                  </p>
                 </div>
               </div>
             </v-card>
@@ -143,7 +166,9 @@
                   <v-card-title class="text-h5 font-weight-black">
                     購課彈性
                   </v-card-title>
-                  <p class="px-4">無入會費與年費綁約機制，單堂購入，學習選擇彈性多元</p>
+                  <p class="px-4">
+                    無入會費與年費綁約機制，單堂購入，學習選擇彈性多元
+                  </p>
                 </div>
               </div>
             </v-card>
@@ -158,7 +183,12 @@
       <div class="text-center mb-16">
         <h1 class="text-h4 font-weight-black">嚴選教師流程</h1>
       </div>
-      <v-card class="mx-auto pb-16" elevation="0" max-width="1200" style="background-color: transparent;">
+      <v-card
+        class="mx-auto pb-16"
+        elevation="0"
+        max-width="1200"
+        style="background-color: transparent"
+      >
         <v-row>
           <v-spacer></v-spacer>
           <v-col cols="12" md="3">
@@ -174,7 +204,9 @@
               <v-card-title class="ps-0 text-h5 font-weight-black">
                 細心篩選
               </v-card-title>
-              <p>經過專業的師資團模擬學生上課情境測試，通過後才會進到下一階段</p>
+              <p>
+                經過專業的師資團模擬學生上課情境測試，通過後才會進到下一階段
+              </p>
             </v-card>
           </v-col>
           <v-col cols="12" md="3">
@@ -182,7 +214,9 @@
               <v-card-title class="ps-0 text-h5 font-weight-black">
                 培訓合格教師
               </v-card-title>
-              <p>平台專業的師資教練團會針對專業科目、心理學、教學技巧培訓師資</p>
+              <p>
+                平台專業的師資教練團會針對專業科目、心理學、教學技巧培訓師資
+              </p>
             </v-card>
           </v-col>
           <v-col cols="12" md="3">
@@ -190,7 +224,9 @@
               <v-card-title class="ps-0 text-h5 font-weight-black">
                 持續翻轉
               </v-card-title>
-              <p>平台每半年會審核、協助師資擁有更豐富、更符合學生需求的上課模式/教材</p>
+              <p>
+                平台每半年會審核、協助師資擁有更豐富、更符合學生需求的上課模式/教材
+              </p>
             </v-card>
           </v-col>
           <v-spacer></v-spacer>
@@ -200,13 +236,23 @@
   </div>
   <div class="teacher-bg py-16">
     <v-container>
-      <v-card class="mx-auto pb-16" elevation="0" max-width="1200" style="background-color: transparent;">
+      <v-card
+        class="mx-auto pb-16"
+        elevation="0"
+        max-width="1200"
+        style="background-color: transparent"
+      >
         <div class="mb-16">
           <h1 class="text-h3 font-weight-black">我想成為</h1>
           <h1 class="text-h3 font-weight-black my-3">平台授課教師</h1>
           <div class="d-flex mt-10">
-            <v-btn class="rounded-xl text-white font-weight-black" color="orange-darken-1" variant="flat">
-              開始挑選教師 <v-icon>mdi-arrow-right</v-icon>
+            <v-btn
+              class="rounded-xl text-white font-weight-black"
+              color="orange-darken-1"
+              variant="flat"
+              href="/tutorRegister"
+            >
+              成為老師 <v-icon>mdi-arrow-right</v-icon>
             </v-btn>
           </div>
         </div>
@@ -234,7 +280,7 @@
                 </v-avatar>
                 <div>
                   <v-card-title class="text-h5 font-weight-black">
-                    我沒從事教育工作<br>
+                    我沒從事教育工作<br />
                     但我有專業知識與技能
                   </v-card-title>
                   <p class="px-4">讓您在家也能夠輕鬆賺取額外收入</p>
@@ -250,17 +296,22 @@
 
 <style scoped>
 .banner-bg {
-  background-image: url('/banner/bg.png');
+  background-image: url("/banner/bg.png");
   background-size: contain;
 }
 
 .courses-bg {
-  background-image: url('/courses/bg.png');
+  background-image: url("/courses/bg.png");
   background-size: contain;
 }
 
 .comment-bg {
-  background: linear-gradient(180deg, #FDF0E7 0%, #FDF0E7 59.9%, rgba(253, 240, 231, 0) 100%);
+  background: linear-gradient(
+    180deg,
+    #fdf0e7 0%,
+    #fdf0e7 59.9%,
+    rgba(253, 240, 231, 0) 100%
+  );
 }
 
 .comment-relative {
@@ -278,8 +329,8 @@
   left: 0;
   z-index: 0;
 }
-.teacher-bg{
-  background-image: url('/footer/bg.png');
+.teacher-bg {
+  background-image: url("/footer/bg.png");
   background-size: contain;
 }
 </style>

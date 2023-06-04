@@ -31,8 +31,9 @@ const toRegister = () => {
 
 const register = () => {
   loading.value = true;
-  $fetch(`/student/v1/register`, {
+  $fetch("/user/v1/register", {
     method: "post",
+    // baseURL: "http://localhost:8000",
     baseURL: "https://tutorgurus-backend.onrender.com",
     body: user,
   }).then((response) => {
@@ -52,8 +53,9 @@ const register = () => {
 
 const login = () => {
   loading.value = true;
-  $fetch(`/student/v1/login`, {
+  $fetch("/user/v1/login", {
     method: "post",
+    // baseURL: "http://localhost:8000",
     baseURL: "https://tutorgurus-backend.onrender.com",
     body: user,
   }).then((response) => {
@@ -63,8 +65,8 @@ const login = () => {
       loading.value = false;
     } else {
       const user = {};
-      user.token = response.data;
-      sessionStorage.setItem("user", JSON.stringify(user));
+      const token = useCookie("token");
+      token.value = response.data;
       alert("登入成功!");
       loading.value = false;
       router.push("/user");
