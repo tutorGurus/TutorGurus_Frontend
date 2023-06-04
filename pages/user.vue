@@ -11,8 +11,10 @@ const update = () => {
   const _user = JSON.parse(userData);
   console.log(_user.token);
   console.error("data", data);
-  $fetch("https://tutorgurus-backend.onrender.com/student/v1/profile", {
+  $fetch("/user/v1/profile", {
     method: "PATCH",
+    // baseURL: "http://localhost:8000",
+    baseURL: "https://tutorgurus-backend.onrender.com",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${_user.token}`,
@@ -40,7 +42,8 @@ const getUserData = () => {
   const userData = sessionStorage.getItem("user");
   const _user = JSON.parse(userData);
   console.log(_user.token);
-  $fetch(`/student/v1/profile`, {
+  $fetch(`/user/v1/profile`, {
+    // baseURL: "http://localhost:8000",
     baseURL: "https://tutorgurus-backend.onrender.com",
     headers: {
       Authorization: `Bearer ${_user.token}`,

@@ -31,8 +31,9 @@ const toRegister = () => {
 
 const register = () => {
   loading.value = true;
-  $fetch(`/student/v1/register`, {
+  $fetch("/user/v1/register", {
     method: "post",
+    // baseURL: "http://localhost:8000",
     baseURL: "https://tutorgurus-backend.onrender.com",
     body: user,
   }).then((response) => {
@@ -52,8 +53,9 @@ const register = () => {
 
 const login = () => {
   loading.value = true;
-  $fetch(`/student/v1/login`, {
+  $fetch("/user/v1/login", {
     method: "post",
+    // baseURL: "http://localhost:8000",
     baseURL: "https://tutorgurus-backend.onrender.com",
     body: user,
   }).then((response) => {
