@@ -46,7 +46,7 @@ onBeforeUnmount(() => {
       ref="navbar"
     >
       <v-toolbar-title class="cursor-pointer" @click="toHome">
-        <v-img src="/LOGO.png" height="28px" width="auto"></v-img>
+        <v-img src="img/logo.png" height="28px" width="auto"></v-img>
       </v-toolbar-title>
       <v-toolbar-title class="text-center">
         <v-btn class="text-button font-weight-black">搜尋教師</v-btn>

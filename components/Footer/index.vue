@@ -16,7 +16,7 @@ const icons = reactive([
                 <v-row class="align-start mx-auto">
                     <v-spacer></v-spacer>
                     <v-col cols="12" sm="3">
-                        <v-img src="/LOGO.png" height="28px" width="auto"></v-img>
+                        <v-img src="img/logo.png" height="28px" width="auto"></v-img>
                         <h4 class="mt-4 ms-10">
                             國高中線上家教預約平台
                         </h4>
