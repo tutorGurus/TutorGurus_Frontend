@@ -63,6 +63,9 @@ onBeforeUnmount(() => {
         <v-btn to="/teachers" class="text-button font-weight-black"
           >師資一覽</v-btn
         >
+        <v-btn to="/teacherCreateCourses" class="text-button font-weight-black"
+          >教師新增課程</v-btn
+        >
       </v-toolbar-title>
       <v-toolbar-title class="text-end">
         <!-- <v-btn icon @click="login = true" v-if="!isLogout">
