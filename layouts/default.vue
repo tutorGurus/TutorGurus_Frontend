@@ -7,6 +7,11 @@ const scrolled = ref(false);
 const login = ref(false);
 const isLogout = ref(false);
 
+const { value: token } = useCookie("token");
+if (token) {
+  isLogout.value = true;
+}
+
 const handleLoginSuccess = () => {
   login.value = false; // 在登录成功后将layouts中的ref改为false
   isLogout.value = true;
@@ -17,7 +22,9 @@ const toHome = () => {
 };
 
 const logout = () => {
-  sessionStorage.removeItem("user");
+  const token = useCookie("token");
+  token.value = "";
+
   isLogout.value = false;
   alert("登出成功!");
   router.push("/");
@@ -92,7 +99,7 @@ onBeforeUnmount(() => {
       />
     </v-dialog>
 
-    <v-main style="background-color: #ececec;">
+    <v-main style="background-color: #ececec">
       <slot />
       <Footer />
     </v-main>
