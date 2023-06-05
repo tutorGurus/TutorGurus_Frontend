@@ -142,13 +142,12 @@ const register = () => {
   }
   const params = {
     ...dataPayload,
-    school: schoolNamePayload,
-    major: majorPayload,
+    school: { schoolName: schoolNamePayload, major: majorPayload },
   };
   $fetch("/tutors/v1/register", {
     method: "POST",
-    // baseURL: "http://localhost:8000",
-    baseURL: "https://tutorgurus-backend.onrender.com",
+    baseURL: "http://localhost:8000",
+    // baseURL: "https://tutorgurus-backend.onrender.com",
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -170,8 +169,8 @@ const getUserData = () => {
   const { value: token } = useCookie("token");
 
   $fetch(`/user/v1/profile`, {
-    // baseURL: "http://localhost:8000",
-    baseURL: "https://tutorgurus-backend.onrender.com",
+    baseURL: "http://localhost:8000",
+    // baseURL: "https://tutorgurus-backend.onrender.com",
     headers: {
       Authorization: `Bearer ${token}`,
     },
