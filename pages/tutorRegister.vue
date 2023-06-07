@@ -142,8 +142,7 @@ const register = () => {
   }
   const params = {
     ...dataPayload,
-    school: schoolNamePayload,
-    major: majorPayload,
+    school: { schoolName: schoolNamePayload, major: majorPayload },
   };
   $fetch("/tutors/v1/register", {
     method: "POST",
