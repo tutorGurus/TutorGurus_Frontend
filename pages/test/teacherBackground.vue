@@ -3,8 +3,10 @@ import { ref, onMounted } from 'vue'
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 
-const introduction = ref('')
+const tutorid = ref('')
 const title = ref('')
+const introduction = ref('')
+
 const teaching_category = ref([])
 const educational_background = ref('')
 const work_experience = ref([])
@@ -12,9 +14,9 @@ const notice = ref('')
 const teaching_introduction = ref([])
 
 function textChange() {
-  console.log('text Change')
+  // console.log('text Change')
 }
-
+/*
 function getUserData() {
   console.log('get Dta')
   introduction.value = '<p>多年教學經驗，讓我開始思考，為什麼孩子對於數學的認知及學習程度會有落差？</p><p>要如何幫助孩子們不排斥數學、喜歡上數學、甚至愛上數學呢？讓Kiki老師來告訴你！'
@@ -25,9 +27,37 @@ function getUserData() {
   notice.value = '用Zoom上課，請提早上線等候！'
   teaching_introduction.value = "數的運算、分數的運算、一元一"
 }
+*/
+function getUserData() {
+  const { value: token } = useCookie("token");
+
+  $fetch(`/tutors/v1/profile/tutorBackground`, {
+    // baseURL: "http://localhost:8000",
+    baseURL: "https://tutorgurus-backend.onrender.com",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }).then((response) => {
+    console.log(response);
+    console.log(response.data[0]);
+    const user = response.data[0];
+
+    title.value = user.title;
+    introduction.value = user.introduction;
+    teaching_category.value = user.teaching_category;
+    educational_background.value = user.educational_background;
+    work_experience.value = user.work_experience;
+    notice.value = user.notice;
+    teaching_introduction.value = user.teaching_introduction;
+    tutorid.value = user.tutorId._id;
+  });
+};
 
 function saveContent() {
-  fetch('/api/content', {
+  const api = `/tutors/v1/${tutorid.value}/profile/tutorBackground`;
+  // console.log(api);
+  // console.log(tutorid.value);
+  fetch(api, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json'
@@ -46,7 +76,7 @@ function saveContent() {
 
 onMounted(() => {
   const userData = sessionStorage.getItem('user')
-  console.log(userData)
+  // console.log(userData)
   if (userData === null) {
     // alert("請先登入會員");
     // .router.push("/");
@@ -119,6 +149,9 @@ onMounted(() => {
       </div>
 
       <v-btn color="success" @click="saveContent">Save</v-btn>
+
+      <!-- <p>  {{  tutorid }}</p>
+      <v-btn @click="getUserData">TestGet</v-btn> -->
 
     </div>
   </div>
