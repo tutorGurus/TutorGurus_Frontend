@@ -3,53 +3,27 @@
     <UserInfo />
     <div class="py-16">
       <v-container>
-        <!-- <div>
-          <p> 每週固定課表 </p>
-          <v-data-table :headers="headers" :items="items" />
-        </div> -->
 
-        <v-data-table :headers="headers" :items="items" />
+        <h3>每週固定課表</h3>
+        <!-- <v-data-table v-model:items-per-page="itemsPerPage" :headers="headers" :items="desserts" item-value="name"
+          class="elevation-1">
+        </v-data-table> -->
+<!-- 
+        <v-data-table :headers="headers" :items="desserts" class="elevation-1" disable-pagination
+          hide-default-footer="true">
+        </v-data-table> -->
 
-        <v-data-table
-          :headers="headers"
-          :items="days"
-          item-key="day"
-          class="elevation-1"
-        >
-          <template #item.action="{ item }">
-            <v-btn @click="openModal(item)">
-              Select time
-            </v-btn>
-          </template>
-        </v-data-table>
+        <v-row>
+          <v-col cols="6">
+            <v-data-table :headers="headers" :items="desserts" class="elevation-1" disable-pagination
+            hide-default-footer="true">
+          </v-data-table>
+          </v-col>
+        </v-row>
 
-        <v-dialog v-model="dialog" max-width="290">
-          <v-card>
-            <v-card-title class="headline">
-              Select time for {{ selectedDay }}
-            </v-card-title>
-
-            <v-card-text>
-              <v-time-picker v-model="startTime" />
-              <v-time-picker v-model="endTime" />
-            </v-card-text>
-
-            <v-card-actions>
-              <v-spacer />
-              <v-btn color="blue darken-1" text @click="dialog = false">
-                Close
-              </v-btn>
-              <v-btn color="blue darken-1" text @click="save">
-                Save
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-
-        <div />
 
         <div>
-          <p> 授課行事曆</p>
+          <h3>授課行事曆</h3>
           <client-only>
             <div>
               <Calendar :attributes="attributes" />
@@ -65,6 +39,64 @@
 import { Calendar } from 'v-calendar'
 import { VDataTable } from 'vuetify/labs/VDataTable'
 
+
+const dialog = ref(false);
+// const headers = ref([
+//   { title: 'Monday', align: 'end', key: 'monday' },
+//   { title: 'Tuesday', align: 'end', key: 'tue' },
+//   { title: 'Wednesday', align: 'end', key: 'wed' },
+//   { title: 'Thursday', align: 'end', key: 'thur' },
+//   { title: 'Friday', align: 'end', key: 'fri' },
+//   { title: 'Saturday', align: 'end', key: 'sat' },
+//   { title: 'Sunday', align: 'end', key: 'sun' },
+// ])
+
+const headers = ref([
+  { title: 'Week', align: 'end', key: 'week' },
+  { title: 'TimeSlot', align: 'end', key: 'timeslot' },
+])
+
+
+const desserts = ref([
+  {
+    week: 'Monday',
+    timeslot: '20:00~22:00',
+  },
+  {
+    week: 'Tuesday',
+    timeslot: '20:00~22:00',
+  },
+  {
+    week: 'Wednesday',
+    timeslot: '20:00~22:00',
+  },
+  {
+    week: 'Thursday',
+    timeslot: '',
+  },
+  {
+    week: 'Friday',
+    timeslot: '20:00~22:00',
+  },
+  {
+    week: 'Saturday',
+    timeslot: '20:00~22:00',
+  },
+  {
+    week: 'Sunday',
+    timeslot: '20:00~22:00',
+  },
+]);
+
+const timeslots = ref([
+  { timeslot: '18:00~20:00' },
+  { timeslot: '20:00~21:00' },
+  { timeslot: '21:00~22:00' },
+  { timeslot: '22:00~23:00' },
+  { timeslot: '23:00~24:00' },
+  { timeslot: '00:00~01:00' },
+  { timeslot: '01:00~02:00' },
+]);
 
 
 </script>

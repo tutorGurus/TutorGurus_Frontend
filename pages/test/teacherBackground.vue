@@ -1,7 +1,5 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import { QuillEditor } from '@vueup/vue-quill'
-import '@vueup/vue-quill/dist/vue-quill.snow.css'
 
 const tutorid = ref('')
 const title = ref('')
@@ -54,10 +52,11 @@ function getUserData() {
 };
 
 function saveContent() {
-  const api = `/tutors/v1/${tutorid.value}/profile/tutorBackground`;
+  const api = `/tutors/v1/profile/tutorBackground`;
   // console.log(api);
   // console.log(tutorid.value);
   fetch(api, {
+    baseURL: "https://tutorgurus-backend.onrender.com",
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json'
@@ -107,46 +106,65 @@ onMounted(() => {
                 </v-col>
 
                 <v-col cols="12">
-                  <v-select v-model="teaching_category" :items="['數學', '英文']" label="Select" multiple variant="outlined" />
+                  <v-select v-model="teaching_category" :items="['數學', '英文']" label="Select" multiple
+                    variant="outlined" />
                 </v-col>
               </v-row>
             </v-card>
+
+
+            <v-card class="mb-8 mx-auto pa-5 rounded-xl">
+              <v-row>
+                <v-col>
+                  <h3>簡單自介</h3>
+                  <ClientOnly>
+                    <QuillEditor v-model:content="introduction" theme="snow" content-type="html"
+                      @textChange="textChange" />
+                  </ClientOnly>
+                </v-col>
+              </v-row>
+            </v-card>
+
+            <v-card class="mb-8 mx-auto pa-5 rounded-xl">
+              <v-row>
+                <v-col>
+                  <h3>教學背景</h3>
+                  <ClientOnly>
+                    <QuillEditor v-model:content="educational_background" theme="snow" content-type="html"
+                      @textChange="textChange" />
+                  </ClientOnly>
+                </v-col>
+              </v-row>
+            </v-card>
+
+
+            <v-card class="mb-8 mx-auto pa-5 rounded-xl">
+              <v-row>
+                <v-col>
+                  <h3>課程簡介</h3>
+                  <ClientOnly>
+                    <QuillEditor v-model:content="teaching_introduction" theme="snow" content-type="html"
+                      @textChange="textChange" />
+                  </ClientOnly>
+                </v-col>
+              </v-row>
+            </v-card>
+
+            <v-card class="mb-8 mx-auto pa-5 rounded-xl">
+              <v-row>
+                <v-col>
+                  <h3>上課注意事項</h3>
+                  <ClientOnly>
+                    <QuillEditor v-model:content="notice" theme="snow" content-type="html" @textChange="textChange" />
+                  </ClientOnly>
+                </v-col>
+              </v-row>
+            </v-card>
+
           </v-col>
         </div>
       </v-container>
 
-      <div class="mb-8 mx-auto pa-5 rounded-xl quillbox">
-        <h3>簡單自介</h3>
-        <ClientOnly>
-          <QuillEditor v-model:content="introduction" theme="snow" content-type="html" @textChange="textChange" />
-        </ClientOnly>
-        <!-- <p> {{ introduction }}</p> -->
-      </div>
-
-      <div class="mb-8 mx-auto pa-5 rounded-xl quillbox">
-        <h3>教學背景</h3>
-        <ClientOnly>
-          <QuillEditor v-model:content="educational_background" theme="snow" content-type="html" @textChange="textChange" />
-        </ClientOnly>
-        <!-- <p> {{ educational_background }}</p> -->
-      </div>
-
-
-      <div class=" mb-8 mx-auto pa-5 rounded-xl quillbox">
-        <h3>課程簡介</h3>
-        <ClientOnly>
-          <QuillEditor v-model:content="teaching_introduction" theme="snow" content-type="html" @textChange="textChange" />
-        </ClientOnly>
-        <!-- <p> {{ teaching_introduction }}</p> -->
-      </div>
-
-      <div class="mb-8 mx-auto pa-5 rounded-xl quillbox">
-        <h3>上課注意事項</h3>
-        <ClientOnly>
-          <QuillEditor v-model:content="notice" theme="snow" content-type="html" @textChange="textChange" />
-        </ClientOnly>
-        <!-- <p> {{ notice }}</p> -->
-      </div>
 
       <v-btn color="success" @click="saveContent">Save</v-btn>
 
@@ -157,5 +175,4 @@ onMounted(() => {
   </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

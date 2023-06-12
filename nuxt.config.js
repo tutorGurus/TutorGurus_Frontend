@@ -15,6 +15,9 @@ export default defineNuxtConfig({
     plugins: [
         {
             src:'@/plugins/v-calendar', mode: 'client'
+        },
+        { 
+            src: '@/plugins/vueQuill.js', mode: 'client'
         }
     ],
 })

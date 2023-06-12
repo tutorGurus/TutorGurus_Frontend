@@ -2,7 +2,7 @@
     <div> 
         <client-only>
             <div>
-                <Calendar :attributes="attributes" @click:date="showDate"  />
+                <Calendar :attributes="attributes" @dayclick="showDate"  />
                 <p>    
                     <v-text-field
                     label="Selected Date"
