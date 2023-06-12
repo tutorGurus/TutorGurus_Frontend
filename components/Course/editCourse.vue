@@ -3,14 +3,13 @@ import { ref, inject } from "vue";
 const getCourses = inject('getCourses');
 
 const dialog = ref(false);
-let grade = ref(props.course.grade);
-const semester = ref(props.course.semester);
-const courseName = ref(props.course.title);
-const coursePrice = ref(props.course.price);
-const courseIntro = ref(props.course.introduction);
+// const semester = ref(props.course.semester);
+// const courseName = ref(props.course.title);
+// const coursePrice = ref(props.course.price);
+// const courseIntro = ref(props.course.introduction);
 // const coursePrep = ref(null);
-const isPublishChoice = ref(props.course.is_publish);
-const isPublish = computed(() => isPublishChoice.value === '上架');
+// const isPublishChoice = ref(props.course.is_publish);
+// const isPublish = computed(() => isPublishChoice.value === '上架');
 
 const props = defineProps({
     course: {
@@ -19,6 +18,8 @@ const props = defineProps({
     }
 });
 
+const courseRef = ref(props.course);
+let grade = ref(props.course.grade);
 let teachingLevel = ref(props.course.education_stages);
 let courseCategory = ref(props.course.category);
 
@@ -65,50 +66,39 @@ const courseItems = computed(() => {
     }
 })
 
-const body = JSON.stringify({
-            education_stages: teachingLevel.value,
-            grade: grade.value,
-            category: courseCategory.value,
-            semester: semester.value,
-            title: courseName.value,
-            introduction: courseIntro.value,
-            // preparation: coursePrep.value,
-            price: coursePrice.value,
-            is_publish: isPublish.value
-        })
 
 const editCourse = (courseId) => {
-    console.log(body)
-    // const { value: token } = useCookie("token");
-    // $fetch(`v1/tutor/courses/${courseId}`, {
-    //     method: "patch",
-    //     baseURL: "https://tutorgurus-backend.onrender.com",
-    //     headers: {
-    //         Authorization: `Bearer ${token}`,
-    //     },
-    //     body: JSON.stringify({
-    //         education_stages: teachingLevel.value,
-    //         grade: grade.value,
-    //         category: courseCategory.value,
-    //         semester: semester.value,
-    //         title: courseName.value,
-    //         introduction: courseIntro.value,
-    //         // preparation: coursePrep.value,
-    //         price: coursePrice.value,
-    //         is_publish: isPublish.value
-    //     })
-    // }).then((response) => {
-    //         console.log(response);
-    //         if (response.status === false) {
-    //         // loading.value = false;
-    //         alert(response.Errormessage);
-    //     } else {
-    //         // loading.value = false;
-    //         alert("更新課程成功！");
-    //         dialog.value = false; // Close the dialog
-    //         getCourses();
-    //     }
-    // });
+    const body = {
+        education_stages: teachingLevel.value,
+        grade: grade.value,
+        category: courseCategory.value,
+        semester: courseRef.value.semester,
+        title: courseRef.value.title,
+        introduction: courseRef.value.introduction,
+        price: courseRef.value.price,
+        is_publish: courseRef.value.is_publish
+    };
+    console.log(body);
+    const { value: token } = useCookie("token");
+    $fetch(`v1/tutor/courses/${courseId}`, {
+        method: "PATCH",
+        baseURL: "https://tutorgurus-backend.onrender.com",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(body)
+    }).then((response) => {
+            console.log(response);
+            if (response.status === false) {
+            // loading.value = false;
+            alert(response.Errormessage);
+        } else {
+            // loading.value = false;
+            alert("更新課程成功！");
+            dialog.value = false; // Close the dialog
+            getCourses();
+        }
+    });
 };
 
 </script>
@@ -150,7 +140,7 @@ const editCourse = (courseId) => {
                         <v-select
                         :items="['上學期', '下學期']"
                         label="授課學期*"
-                        v-model="semester"
+                        v-model="courseRef.semester"
                         required
                         ></v-select>
                     </v-col>
@@ -158,14 +148,14 @@ const editCourse = (courseId) => {
                         <v-select
                         :items=courseItems
                         label="授課科目*"
-                        v-model="props.course.category"
+                        v-model="courseCategory"
                         required
                         ></v-select>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
                         <v-text-field 
                         label="價錢*" 
-                        v-model="coursePrice"
+                        v-model="courseRef.price"
                         required>
                         </v-text-field>
                     </v-col>
@@ -173,33 +163,40 @@ const editCourse = (courseId) => {
                         <v-select
                         :items="['不上架', '上架']"
                         label="課程是否上架*"
-                        v-model = "isPublishChoice"
+                        v-model = "courseRef.is_publish"
                         required
                         ></v-select>
                     </v-col>
                     <v-col cols="12">
                         <v-text-field 
                         label="課程名稱*" 
-                        v-model="courseName"
+                        v-model="courseRef.title"
                         required>
                         </v-text-field>
                     </v-col>
                     <v-col cols="12">
-                        <v-textarea
+                        <p>課程簡介</p>
+                        <div>
+                            <ClientOnly>
+                                {{ courseRef.introduction }}
+                                <QuillEditor v-model:content="courseRef.introduction" theme="snow" content-type="html" />
+                            </ClientOnly>
+                        </div>
+                        <!-- <v-textarea
                         clearable
                         clear-icon="mdi-close-circle"
                         label="課程簡介"
-                        v-model="courseIntro"
-                        ></v-textarea>
+                        v-model="courseRef.introduction"
+                        ></v-textarea> -->
                     </v-col>
-                    <v-col cols="12">
+                    <!-- <v-col cols="12">
                         <v-textarea
                         clearable
                         clear-icon="mdi-close-circle"
                         label="課前準備"
                         model-value=""
                         ></v-textarea>
-                    </v-col>
+                    </v-col> -->
                     </v-row>
                 </v-container>
                 <small>*為必填欄位</small>
@@ -209,7 +206,7 @@ const editCourse = (courseId) => {
                 <v-btn color="blue-darken-1" variant="text" @click="dialog = false">
                     取消
                 </v-btn>
-                <v-btn color="blue-darken-1" variant="text" @click="editCourse(props.course._id)">
+                <v-btn color="blue-darken-1" variant="text" @click="editCourse(courseRef._id)">
                     儲存
                 </v-btn>
                 </v-card-actions>

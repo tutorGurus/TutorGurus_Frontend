@@ -1,7 +1,6 @@
 <script setup>
 // import UserInfo  from '../components/userInfo';
 import { onMounted, ref, provide } from 'vue'
-import EditCourse from '~/components/Course/editCourse.vue';
 const courses = ref(false);
 
 const getCourses = async () => {
@@ -66,7 +65,7 @@ provide('getCourses', getCourses);
                 <p v-else style="color:red">課程簡介尚未填寫</p>
                 </v-card-text>
                 <v-card-actions>
-                <EditCourse :course="course" />
+                <CourseEditCourse :course="course" />
                 <v-btn
                     variant="outlined"
                     color="#F2813B"

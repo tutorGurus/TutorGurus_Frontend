@@ -4,7 +4,8 @@ export default defineNuxtConfig({
     ],
     css: [
         'vuetify/styles/main.sass',
-        '@mdi/font/css/materialdesignicons.css'
+        '@mdi/font/css/materialdesignicons.css',
+        '@vueup/vue-quill/dist/vue-quill.snow.css'
     ],
     build: {
         transpile: ['vuetify']
@@ -15,6 +16,9 @@ export default defineNuxtConfig({
     plugins: [
         {
             src:'@/plugins/v-calendar', mode: 'client'
+        },
+        { 
+            src: '~/plugins/vueQuill.js', mode: 'client'
         }
     ],
 })

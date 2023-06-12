@@ -1,5 +1,6 @@
 <script setup>
 import { ref, inject } from "vue";
+const courseIntro = ref('');
 
 const getCourses = inject('getCourses');
 const dialog = ref(false);
@@ -9,7 +10,7 @@ const courseCategory = ref(null);
 const semester = ref(null);
 const courseName = ref(null);
 const coursePrice = ref(null);
-const courseIntro = ref(null);
+// const courseIntro = ref(null);
 // const coursePrep = ref(null);
 const isPublishChoice = ref(null);
 const isPublish = computed(() => isPublishChoice.value === '上架');
@@ -171,20 +172,28 @@ const saveCourse = () => {
                         </v-text-field>
                     </v-col>
                     <v-col cols="12">
-                        <v-textarea
+                        <p>課程簡介</p>
+                        <div>
+                            <ClientOnly>
+                                {{ courseIntro }}
+                                <QuillEditor v-model:content="courseIntro" theme="snow" content-type="html" />
+                            </ClientOnly>
+                        </div>
+                        <!-- <v-textarea
                         clearable
                         clear-icon="mdi-close-circle"
                         label="課程簡介"
                         v-model="courseIntro"
-                        ></v-textarea>
+                        ></v-textarea> -->
                     </v-col>
                     <!-- <v-col cols="12">
-                        <v-textarea
-                        clearable
-                        clear-icon="mdi-close-circle"
-                        label="課前準備"
-                        v-model="coursePrep"
-                        ></v-textarea>
+                        <p>課前準備</p>
+                        <div>
+                            <ClientOnly>
+                                {{ coursePrep }}
+                                <QuillEditor v-model:content="coursePrep" theme="snow" content-type="html" @textChange="textChange" />
+                            </ClientOnly>
+                        </div>                            
                     </v-col> -->
                     </v-row>
                 </v-container>
