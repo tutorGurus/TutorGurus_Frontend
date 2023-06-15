@@ -2,19 +2,15 @@
   <div>
     <UserInfo />
     <div class="py-16">
-
       <v-container>
         <div>
           <v-col cols="12">
-
             <v-card class="mb-8 mx-auto pa-5 rounded-xl ql-editor">
               <h3>講師介紹</h3>
-
               <v-row>
                 <v-col cols="12">
                   <v-text-field v-model="title" label="專屬頭銜" variant="outlined" />
                 </v-col>
-
                 <v-col cols="12">
                   <v-select v-model="teaching_category" :items="[
                     '國文',
@@ -30,8 +26,6 @@
                 </v-col>
               </v-row>
             </v-card>
-
-
             <v-card class="mb-8 mx-auto pa-5 rounded-xl ql-editor">
               <v-row>
                 <v-col>
@@ -43,7 +37,6 @@
                 </v-col>
               </v-row>
             </v-card>
-
             <v-card class="mb-8 mx-auto pa-5 rounded-xl ql-editor">
               <v-row>
                 <v-col>
@@ -55,7 +48,6 @@
                 </v-col>
               </v-row>
             </v-card>
-
             <v-card class="mb-8 mx-auto pa-5 rounded-xl ql-editor">
               <v-row>
                 <v-col>
@@ -97,10 +89,6 @@
           </v-col>
         </div>
       </v-container>
-
-
-
-
     </div>
   </div>
 </template>
