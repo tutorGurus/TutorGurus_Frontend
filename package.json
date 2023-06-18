@@ -7,7 +7,8 @@
     "start": "node .output/server/index.mjs",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "lint": "eslint --ext .ts,.js,.vue ."
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^12.0.0",
@@ -21,8 +22,11 @@
   },
   "dependencies": {
     "@mdi/font": "^7.2.96",
+    "@popperjs/core": "^2.11.7",
+    "@vueup/vue-quill": "^1.2.0",
     "axios": "^1.4.0",
     "sass": "^1.62.1",
-    "vuetify": "^3.2.2"
+    "v-calendar": "^3.0.3",
+    "vuetify": "^3.3.3"
   }
 }
