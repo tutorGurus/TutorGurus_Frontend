@@ -84,7 +84,20 @@ const switchToAccountInfo = () => {
       <v-card class="tab-position" v-if="isShowAccount">
         <v-tabs v-model="tabs" bg-color="white" color="deep-orange-accent-2">
           <v-tab :value="1"> 個人檔案 </v-tab>
-          <v-tab :value="2"> 銀收分析 </v-tab>
+          <v-tab :value="2"> 營收分析 </v-tab>
+
+          <router-link to="/tutorBooked">
+            <v-tab :value="3">行事曆</v-tab>
+          </router-link>
+
+          <router-link to="/tutorBackground">
+            <v-tab :value="4">老師背景</v-tab>
+          </router-link>
+
+          <router-link to="/tutorSchedule">
+            <v-tab :value="5">開課時段</v-tab>
+          </router-link>
+
         </v-tabs>
       </v-card>
     </v-container>
