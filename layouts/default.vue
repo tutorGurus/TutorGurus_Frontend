@@ -86,7 +86,7 @@ onBeforeUnmount(() => {
           <v-btn icon to="/cart">
             <v-icon>mdi-cart</v-icon>
           </v-btn>
-          <v-btn icon to="/user">
+          <v-btn icon to="/schedule">
             <v-icon>mdi-account-circle</v-icon>
           </v-btn>
         </div>

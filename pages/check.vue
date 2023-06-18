@@ -1,3 +1,8 @@
+<script setup>
+import { ref, reactive } from "vue";
+const payment = ref();
+</script>
+
 <template>
   <div class="py-16">
     <v-container>
@@ -8,15 +13,15 @@
         style="background-color: transparent"
       >
         <v-timeline direction="horizontal" truncate-line="both">
-          <v-timeline-item dot-color="#F2813B">
+          <v-timeline-item dot-color="grey-lighten-2">
             <template v-slot:icon>
-              <span class="text-white">1</span>
+              <span class="text-grey-darken-2">1</span>
             </template>
             <template v-slot:opposite> 確認訂單 </template>
           </v-timeline-item>
-          <v-timeline-item dot-color="grey-lighten-2">
+          <v-timeline-item  dot-color="#F2813B">
             <template v-slot:icon>
-              <span class="text-grey-darken-2">2</span>
+              <span class="text-white">2</span>
             </template>
             確認付款
           </v-timeline-item>
@@ -46,7 +51,6 @@
                     <th class="text-left font-weight-bold">購買課程</th>
                     <th class="text-left font-weight-bold">單價</th>
                     <th class="text-left font-weight-bold">價格</th>
-                    <th class="text-left font-weight-bold">刪除</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -62,9 +66,6 @@
                     </td>
                     <td>NT500</td>
                     <td>NT500</td>
-                    <td>
-                      <v-icon> mdi-delete </v-icon>
-                    </td>
                   </tr>
                   <tr>
                     <td>
@@ -78,9 +79,6 @@
                     </td>
                     <td>NT500</td>
                     <td>NT500</td>
-                    <td>
-                      <v-icon> mdi-delete </v-icon>
-                    </td>
                   </tr>
                 </tbody>
               </v-table>
@@ -102,17 +100,13 @@
               </v-card-text>
             </v-card>
           </v-col>
-          <!-- 訂單資訊 -->
+          <!-- 付款資訊 -->
           <v-col cols="12" md="4">
             <v-card class="pa-3 mx-auto rounded-lg">
-              <v-card-title class="font-weight-bold">訂單資訊</v-card-title>
+              <v-card-title class="font-weight-bold">付款資訊</v-card-title>
               <v-divider class="mx-4 mb-3"></v-divider>
-              <v-card-text class="d-flex justify-space-between">
-                <p>課程價格</p>
-                <p class="font-weight-bold">NT$ 10,000</p>
-              </v-card-text>
-              <v-card-text class="pt-0">
-                <p class="text-decoration-underline text-blue">輸入優惠代碼</p>
+              <v-card-text>
+                <v-select :items="['信用卡付款','ATM轉帳']" v-model="payment"  label="付款方式" variant="underlined"></v-select>
               </v-card-text>
               <v-divider class="mx-4 mb-3"></v-divider>
               <v-card-text class="d-flex justify-space-between py-1">
@@ -120,8 +114,8 @@
                 <p class="font-weight-bold">NT$ 10,000</p>
               </v-card-text>
               <v-card-actions>
-                <v-btn class="rounded-xl text-white" color="orange-darken-1" variant="flat" block to="/check">
-                  前往付款
+                <v-btn class="rounded-xl text-white" color="orange-darken-1" variant="flat" block :disabled="!payment" to="payFinished">
+                  確認付款
                 </v-btn>
               </v-card-actions>
             </v-card>
