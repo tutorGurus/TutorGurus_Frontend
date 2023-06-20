@@ -13,7 +13,7 @@
 
             </v-row>
             <v-row justify="end">
-              <v-btn color="primary" @click="OpenWeekDialog()">Edit</v-btn>
+              <v-btn color="primary" @click="dialog = true">Edit</v-btn>
               <!-- <v-btn color="primary" @click="getUserData">Test</v-btn> -->
             </v-row>
 
@@ -113,7 +113,7 @@ let weeklySchedule = reactive({
 })
 
 let selectedDate = ref('');
-const dialog = ref(false);
+let dialog = ref(false);
 const hours_list = ref([]);
 const startTime = ref(null);
 const endTime = ref(null);
@@ -161,25 +161,25 @@ function schedule_date() {
 }
 
 function OpenWeekDialog() {
-  this.dialog = true;
+  dialog = true;
 }
 
 function updateWeekSchedule() {
-  // console.log('weeklySchedule', weeklySchedule);
-
+  console.log('weeklySchedule', weeklySchedule);
   // logSchedule(weeklySchedule);
 
+  /*
   let data = {
     "year": 2023,
     "month": 6,
     "data": [
-        [0, "08:00", "12:00"],
-        [1, "13:00", "15:00"],
-        [2, "", ""],
-        [3, "", ""],
-        [4, "", ""],
-        [5, "", ""],
-        [6, "", ""]
+      [0, "08:00", "12:00"],
+      [1, "13:00", "15:00"],
+      [2, "", ""],
+      [3, "", ""],
+      [4, "", ""],
+      [5, "", ""],
+      [6, "", ""]
     ]
   }
 
@@ -195,7 +195,7 @@ function updateWeekSchedule() {
     body: data
   })
     .catch((error) => console.log('Error: ', error))
-
+  */
 
 }
 
@@ -253,14 +253,14 @@ function getUserData() {
       respRoutineTime.push(input);
     }
     // console.log('respRoutineTime', respRoutineTime);
-    result = Object.entries(respRoutineTime).map(([key, value]) => {
+    Object.entries(respRoutineTime).map(([key, value]) => {
       let timeslot = value[0][0] && value[0][1] ? `${value[0][0]}~${value[0][1]}` : 'close';
-      return {
+      let output = {
         week: week_str[key],
         timeslot: timeslot,
       };
+      result.push(output);
     });
-    // console.log('result', result)
   });
 
 
