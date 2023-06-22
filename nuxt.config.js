@@ -1,4 +1,15 @@
 export default defineNuxtConfig({
+    imports: {
+        "dirs": ['stores']
+    },
+    modules: [
+        [
+            '@pinia/nuxt',
+            {
+                'autoImports': ['defineStore', 'acceptHMRUpdate'],
+            },
+        ]
+    ], 
     serverMiddleware: [
         { path: '/api', handler: '~/middleware/proxy.js' },
     ],

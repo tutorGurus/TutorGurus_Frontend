@@ -2,9 +2,9 @@
 </script>
 
 <template>
-  <div>
-    <h1>Course Index</h1>
-  </div>
+    <div>
+      <h1>時段設定</h1>
+    </div>
 </template>
 
 <style>

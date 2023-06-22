@@ -1,5 +1,6 @@
 <script setup>
-// import UserInfo  from '../components/userInfo';
+import SetCourses from '../../components/Course/setCourses.vue'
+
 import { onMounted, ref, provide } from 'vue'
 const courses = ref(false);
 
@@ -18,6 +19,7 @@ const getCourses = async () => {
 
 const deleteCourse = async (courseId) => {
     const { value: token } = useCookie("token");
+    // 先驗證此課程 ID 是否已被預約中，若預約中則不可刪除
     const res = await $fetch(`/v1/tutor/courses/${courseId}`, {
         method: "DELETE",
         baseURL: "https://tutorgurus-backend.onrender.com",
@@ -32,22 +34,21 @@ const deleteCourse = async (courseId) => {
 onMounted(getCourses);
 
 provide('getCourses', getCourses);
+
 </script>
 
-<template>
-    <UserInfo />
-    <v-container>
-        <div class="mt-5 mb-5">
-            <h2 class="text-h4 mb-3">所有開設的課程</h2>
-            <Course />
-        </div>
-        <div class="d-flex justify-start" v-if="courses">
-            <v-card
-                max-width="344"
-                v-for="course in courses" 
-                :key="course._id"
-                class="ma-2 pa-2"
-            >
+<template> 
+    <h2>管理您的課程</h2>
+    <SetCourses />
+    <v-row class="justify-start" v-if="courses">
+        <v-col
+            cols="12"
+            sm="6"
+            md="3"
+            v-for="course in courses" 
+            :key="course._id"
+        >
+            <v-card max-width="344">
                 <v-card-text>
                 <span class="mb-2">
                     <span class="status-dot" :class="{ 'dot-green': course.is_publish, 'dot-gray': !course.is_publish }"></span>
@@ -60,23 +61,24 @@ provide('getCourses', getCourses);
                     <v-chip size="small"> {{ course.grade }}{{ course.category }}</v-chip>
                     <v-chip size="small" class="ml-2" color="#3BADEF"> {{ course.semester}}</v-chip>
                 </div>
-                <!-- <p>{{ course.introduction }}</p> -->
                 <p v-if="course.introduction">課程簡介已填寫</p>
                 <p v-else style="color:red">課程簡介尚未填寫</p>
                 </v-card-text>
                 <v-card-actions>
-                <CourseEditCourse :course="course" />
-                <v-btn
-                    variant="outlined"
-                    color="#F2813B"
-                    @click="() => deleteCourse(course._id)"
-                >
-                    刪除
-                </v-btn>
+                <div class="d-flex justify-center align-center">
+                    <SetCourses :course="course" />
+                    <v-btn
+                        variant="outlined"
+                        color="pink-lighten-2"
+                        @click="() => deleteCourse(course._id)"
+                    >
+                        刪除
+                    </v-btn>
+                </div>
                 </v-card-actions>
             </v-card>
-        </div>
-    </v-container>
+        </v-col>
+    </v-row>
 </template>
 
 <style scoped>
