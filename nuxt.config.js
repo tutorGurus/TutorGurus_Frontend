@@ -1,10 +1,22 @@
 export default defineNuxtConfig({
+    imports: {
+        "dirs": ['stores']
+    },
+    modules: [
+        [
+            '@pinia/nuxt',
+            {
+                'autoImports': ['defineStore', 'acceptHMRUpdate'],
+            },
+        ]
+    ], 
     serverMiddleware: [
         { path: '/api', handler: '~/middleware/proxy.js' },
     ],
     css: [
         'vuetify/styles/main.sass',
-        '@mdi/font/css/materialdesignicons.css'
+        '@mdi/font/css/materialdesignicons.css',
+        '@vueup/vue-quill/dist/vue-quill.snow.css'
     ],
     build: {
         transpile: ['vuetify']

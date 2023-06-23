@@ -108,7 +108,7 @@ const login = () => {
       <div class="pa-4">
         <v-text-field
           v-show="isRegister"
-          v-model="user.name"
+          v-model="user.userName"
           label="帳號"
           variant="underlined"
         ></v-text-field>
