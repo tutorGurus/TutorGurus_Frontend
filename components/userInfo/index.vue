@@ -1,6 +1,28 @@
 <script setup>
-import { ref, reactive } from "vue";
-const tabs = ref();
+import { ref } from 'vue'
+import { useRouter } from "vue-router";
+const router = useRouter();
+const tabs = ref(1)
+
+const isShowSchedule = ref(true)
+const isShowAccount = ref(false)
+const accountInfoButtonStyle = ref({
+  'text-white': true,
+})
+
+const switchToMySchedule = () => {
+  tabs.value = 1
+  isShowAccount.value = false
+  isShowSchedule.value = true
+  router.push('/schedule')
+}
+
+const switchToAccountInfo = () => {
+  tabs.value = 1
+  isShowAccount.value = true
+  isShowSchedule.value = false
+  router.push('/user')
+}
 </script>
 <template>
   <div class="pt-16" style="background-color: #fffdff">
@@ -11,26 +33,24 @@ const tabs = ref();
             <v-img src="/avatar/01.png"></v-img>
           </v-avatar>
           <div>
-            <v-card-title class="text-h4 font-weight-black">
-              你好，Jessica
-            </v-card-title>
+            <v-card-title class="text-h4 font-weight-black"> 你好，Jessica </v-card-title>
             <div class="d-flex mt-3">
               <v-btn
-                class="rounded text-white mx-2"
-                color="#F2813B"
-                variant="elevated"
+                class="rounded mx-2"
+                :class="accountInfoButtonStyle"
+                :color="isShowSchedule === true ? '#F2813B' : 'orange-darken-1'"
+                :variant="isShowSchedule === true ? 'flat' : 'outlined'"
+                @click="switchToMySchedule"
                 >我的課表</v-btn
               >
               <v-btn
-                class="rounded text-white mx-2"
-                color="#F2813B"
-                variant="elevated"
+                class="rounded mx-2"
+                :color="isShowAccount === false ? '#F2813B' : 'orange-darken-1'"
+                :variant="isShowAccount === true ? 'flat' : 'outlined'"
+                @click="switchToAccountInfo"
                 >帳戶資訊</v-btn
               >
-              <v-btn
-                class="rounded text-white mx-2"
-                color="#F2813B"
-                variant="elevated"
+              <v-btn class="rounded text-white mx-2" color="orange-darken-1" variant="outlined"
                 >課程軌跡</v-btn
               >
             </div>
@@ -51,10 +71,33 @@ const tabs = ref();
           </div>
         </div>
       </div>
-      <v-card class="tab-position">
+      <!-- 切換我的課表 -->
+      <v-card class="tab-position" v-if="isShowSchedule">
+        <v-tabs v-model="tabs" bg-color="white" color="deep-orange-accent-2">
+          <v-tab :value="1"> 行事曆 </v-tab>
+          <v-tab :value="2"> 課程預約 </v-tab>
+          <v-tab :value="3"> 課程請假 </v-tab>
+          <v-tab :value="4"> 課程異動 </v-tab>
+        </v-tabs>
+      </v-card>
+      <!-- 切換帳戶資訊 -->
+      <v-card class="tab-position" v-if="isShowAccount">
         <v-tabs v-model="tabs" bg-color="white" color="deep-orange-accent-2">
           <v-tab :value="1"> 個人檔案 </v-tab>
-          <v-tab :value="2"> 銀收分析 </v-tab>
+          <v-tab :value="2"> 營收分析 </v-tab>
+
+          <router-link to="/tutorBooked">
+            <v-tab :value="3">行事曆</v-tab>
+          </router-link>
+
+          <router-link to="/tutorBackground">
+            <v-tab :value="4">老師背景</v-tab>
+          </router-link>
+
+          <router-link to="/tutorSchedule">
+            <v-tab :value="5">開課時段</v-tab>
+          </router-link>
+
         </v-tabs>
       </v-card>
     </v-container>

@@ -19,8 +19,8 @@ const isRegister = ref(false);
 const loading = ref(false);
 const user = reactive({
   userName: "",
-  email: "",
-  password: "",
+  email: "anna@gmail.com",
+  password: "Aa0000000",
   confirmPassword: "",
 });
 
