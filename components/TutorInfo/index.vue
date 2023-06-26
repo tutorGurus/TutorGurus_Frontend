@@ -7,14 +7,15 @@ const { tutorData } = storeToRefs(store);
 const tabs = ref(1);
 const tabContent = reactive({
   1: [
-    {to: "/tutorPlatform", label: "行事曆"},
-    {to: "/tutorPlatform/tutorSchedule", label: "時段設定"},
-    {to: "/tutorPlatform/setPrice", label: "鐘點費設定"},
-    {to: "/tutorPlatform/manageCourses", label: "課程管理"}
+    { to: "/tutorPlatform", label: "行事曆" },
+    { to: "/tutorPlatform/tutorSchedule", label: "時段設定" },
+    { to: "/tutorPlatform/setPrice", label: "鐘點費設定" },
+    { to: "/tutorPlatform/manageCourses", label: "課程管理" }
   ],
   2: [
-    {to: "/tutorPlatform/profile", label: "個人檔案"},
-    {to: "/tutorPlatform/incomeAnalyze", label: "營收分析"},
+    { to: "/tutorPlatform/profile", label: "個人檔案" },
+    { to: "/tutorPlatform/tutorBackground", label: "講師簡介" },
+    { to: "/tutorPlatform/incomeAnalyze", label: "營收分析" },
   ]
 });
 const currentTabContent = ref(tabContent[1]);

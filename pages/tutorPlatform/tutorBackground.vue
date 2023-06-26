@@ -1,6 +1,5 @@
 <template>
   <div>
-    <UserInfo />
     <div class="py-16">
       <v-container>
         <div>
