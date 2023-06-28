@@ -1,71 +1,59 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from "vue";
-import { useRouter } from "vue-router";
-const router = useRouter();
-const scrolled = ref(false);
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { useRouter } from 'vue-router'
+const router = useRouter()
+const scrolled = ref(false)
 
-const login = ref(false);
-const isLogout = ref(false);
+const login = ref(false)
+const isLogout = ref(false)
 
-const { value: token } = useCookie("token");
+const { value: token } = useCookie('token')
 if (token) {
-  isLogout.value = true;
+  isLogout.value = true
 }
 
 const handleLoginSuccess = () => {
-  login.value = false; // 在登录成功后将layouts中的ref改为false
-  isLogout.value = true;
-};
+  login.value = false // 在登录成功后将layouts中的ref改为false
+  isLogout.value = true
+}
 
 const toHome = () => {
-  router.push("/");
-};
+  router.push('/')
+}
 
 const logout = () => {
-  const token = useCookie("token");
-  token.value = "";
+  const token = useCookie('token')
+  token.value = ''
 
-  isLogout.value = false;
-  alert("登出成功!");
-  router.push("/");
-};
+  isLogout.value = false
+  alert('登出成功!')
+  router.push('/')
+}
 
 const handleScroll = () => {
-  scrolled.value = window.pageYOffset > 0;
-};
+  scrolled.value = window.pageYOffset > 0
+}
 
 onMounted(() => {
-  window.addEventListener("scroll", handleScroll);
-});
+  window.addEventListener('scroll', handleScroll)
+})
 
 onBeforeUnmount(() => {
-  window.removeEventListener("scroll", handleScroll);
-});
+  window.removeEventListener('scroll', handleScroll)
+})
 </script>
 
 <template>
   <v-layout>
-    <v-toolbar
-      absolute
-      fixed
-      class="mt-4"
-      :class="{ 'white-bg': scrolled }"
-      ref="navbar"
-    >
+    <v-toolbar absolute fixed class="mt-4" :class="{ 'white-bg': scrolled }" ref="navbar">
       <v-toolbar-title class="cursor-pointer" @click="toHome">
         <v-img src="/logo.png" height="28px" width="auto"></v-img>
       </v-toolbar-title>
       <v-toolbar-title class="text-center">
         <v-btn class="text-button font-weight-black">搜尋教師</v-btn>
-        <v-btn to="/courses" class="text-button font-weight-black"
-          >課程一覽</v-btn
-        >
-        <v-btn to="/teachers" class="text-button font-weight-black"
-          >師資一覽</v-btn
-        >
-        <v-btn to="/tutorPlatform" class="text-button font-weight-black"
-          >教師個人後台</v-btn
-        >
+        <v-btn to="/courses" class="text-button font-weight-black">課程一覽</v-btn>
+        <v-btn to="/tutors" class="text-button font-weight-black">師資一覽</v-btn>
+        <v-btn to="/tutorPlatform" class="text-button font-weight-black">教師個人後台</v-btn>
       </v-toolbar-title>
       <v-toolbar-title class="text-end">
         <!-- <v-btn icon @click="login = true" v-if="!isLogout">
@@ -96,10 +84,7 @@ onBeforeUnmount(() => {
       </v-toolbar-title>
     </v-toolbar>
     <v-dialog transition="dialog-top-transition" width="380" v-model="login">
-      <LoginAndRegister
-        :layoutsLogin="login"
-        :onLoginSuccess="handleLoginSuccess"
-      />
+      <LoginAndRegister :layoutsLogin="login" :onLoginSuccess="handleLoginSuccess" />
     </v-dialog>
 
     <v-main style="background-color: #ececec">
