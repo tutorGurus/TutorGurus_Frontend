@@ -11,17 +11,23 @@
                   <v-text-field v-model="title" label="專屬頭銜" variant="outlined" />
                 </v-col>
                 <v-col cols="12">
-                  <v-select v-model="teaching_category" :items="[
-                    '國文',
-                    '數學',
-                    '英文',
-                    '物理',
-                    '化學',
-                    '生物',
-                    '地球科學',
-                    '歷史',
-                    '地理',
-                  ]" label="Select" multiple variant="outlined" />
+                  <v-select
+                    v-model="teaching_category"
+                    :items="[
+                      '國文',
+                      '數學',
+                      '英文',
+                      '物理',
+                      '化學',
+                      '生物',
+                      '地球科學',
+                      '歷史',
+                      '地理'
+                    ]"
+                    label="Select"
+                    multiple
+                    variant="outlined"
+                  />
                 </v-col>
               </v-row>
             </v-card>
@@ -30,8 +36,12 @@
                 <v-col>
                   <h3>簡單自介</h3>
                   <ClientOnly>
-                    <QuillEditor v-model:content="introduction" theme="snow" content-type="html"
-                      @textChange="textChange" />
+                    <QuillEditor
+                      v-model:content="introduction"
+                      theme="snow"
+                      content-type="html"
+                      @textChange="textChange"
+                    />
                   </ClientOnly>
                 </v-col>
               </v-row>
@@ -41,8 +51,12 @@
                 <v-col>
                   <h3>教學背景-學歷</h3>
                   <ClientOnly>
-                    <QuillEditor v-model:content="educational_background" theme="snow" content-type="html"
-                      @textChange="textChange" />
+                    <QuillEditor
+                      v-model:content="educational_background"
+                      theme="snow"
+                      content-type="html"
+                      @textChange="textChange"
+                    />
                   </ClientOnly>
                 </v-col>
               </v-row>
@@ -52,8 +66,12 @@
                 <v-col>
                   <h3>教學背景-經歷</h3>
                   <ClientOnly>
-                    <QuillEditor v-model:content="work_experience" theme="snow" content-type="html"
-                      @textChange="textChange" />
+                    <QuillEditor
+                      v-model:content="work_experience"
+                      theme="snow"
+                      content-type="html"
+                      @textChange="textChange"
+                    />
                   </ClientOnly>
                 </v-col>
               </v-row>
@@ -64,8 +82,12 @@
                 <v-col>
                   <h3>課程簡介</h3>
                   <ClientOnly>
-                    <QuillEditor v-model:content="teaching_introduction" theme="snow" content-type="html"
-                      @textChange="textChange" />
+                    <QuillEditor
+                      v-model:content="teaching_introduction"
+                      theme="snow"
+                      content-type="html"
+                      @textChange="textChange"
+                    />
                   </ClientOnly>
                 </v-col>
               </v-row>
@@ -76,7 +98,12 @@
                 <v-col>
                   <h3>上課注意事項</h3>
                   <ClientOnly>
-                    <QuillEditor v-model:content="notice" theme="snow" content-type="html" @textChange="textChange" />
+                    <QuillEditor
+                      v-model:content="notice"
+                      theme="snow"
+                      content-type="html"
+                      @textChange="textChange"
+                    />
                   </ClientOnly>
                 </v-col>
               </v-row>
@@ -91,7 +118,6 @@
     </div>
   </div>
 </template>
-
 
 <script setup>
 import { ref, onMounted } from 'vue'
@@ -111,38 +137,38 @@ function textChange() {
 }
 
 function getUserData() {
-  const { value: token } = useCookie("token");
+  const { value: token } = useCookie('token')
 
   $fetch(`/tutors/v1/profile/tutorBackground`, {
     // baseURL: "http://localhost:8000",
-    baseURL: "https://tutorgurus-backend.onrender.com",
+    baseURL: 'https://tutorgurus-backend-l63x.onrender.com/',
     headers: {
-      Authorization: `Bearer ${token}`,
-    },
+      Authorization: `Bearer ${token}`
+    }
   }).then((response) => {
-    console.log(response);
-    console.log(response.data[0]);
-    const user = response.data[0];
+    console.log(response)
+    console.log(response.data[0])
+    const user = response.data[0]
 
-    title.value = user.title;
-    introduction.value = user.introduction;
-    teaching_category.value = user.teaching_category;
-    educational_background.value = user.educational_background;
-    work_experience.value = user.work_experience;
-    notice.value = user.notice;
-    teaching_introduction.value = user.teaching_introduction[0].teaching_content;
-  });
-};
+    title.value = user.title
+    introduction.value = user.introduction
+    teaching_category.value = user.teaching_category
+    educational_background.value = user.educational_background
+    work_experience.value = user.work_experience
+    notice.value = user.notice
+    teaching_introduction.value = user.teaching_introduction[0].teaching_content
+  })
+}
 
 function saveContent() {
-  const { value: token } = useCookie("token");
+  const { value: token } = useCookie('token')
 
   $fetch('/tutors/v1/profile/tutorBackground', {
     method: 'PATCH',
-    baseURL: "https://tutorgurus-backend.onrender.com",
+    baseURL: 'https://tutorgurus-backend-l63x.onrender.com/',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`
     },
     body: JSON.stringify({
       title: title.value,
@@ -153,27 +179,24 @@ function saveContent() {
       notice: notice.value,
       teaching_introduction: [
         {
-          "teaching_category": '國中',
-          "subject": '數學',
-          "teaching_content": teaching_introduction.value
+          teaching_category: '國中',
+          subject: '數學',
+          teaching_content: teaching_introduction.value
         }
       ]
     })
   })
-
-};
-
+}
 
 onMounted(() => {
-  const { value: token } = useCookie("token");
+  const { value: token } = useCookie('token')
   if (!token) {
-    alert("請先登入會員");
-    router.push("/");
+    alert('請先登入會員')
+    router.push('/')
   } else {
-    getUserData();
+    getUserData()
   }
-});
-
+})
 </script>
 
 <style scoped>

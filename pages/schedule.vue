@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
-import { useRouter } from "vue-router";
-const router = useRouter();
+import { useRouter } from 'vue-router'
+const router = useRouter()
 const tabs = ref(1)
 // import { ref, onMounted } from "vue";
 // import { useRouter } from "vue-router";
@@ -16,7 +16,7 @@ const tabs = ref(1)
 //   $fetch("/user/v1/profile", {
 //     method: "PATCH",
 //     // baseURL: "http://localhost:8000",
-//     baseURL: "https://tutorgurus-backend.onrender.com",
+//     baseURL: "https://tutorgurus-backend-l63x.onrender.com/",
 //     headers: {
 //       "Content-Type": "application/json",
 //       Authorization: `Bearer ${token}`,
@@ -44,7 +44,7 @@ const tabs = ref(1)
 //   const { value: token } = useCookie("token");
 //   $fetch(`/user/v1/profile`, {
 //     // baseURL: "http://localhost:8000",
-//     baseURL: "https://tutorgurus-backend.onrender.com",
+//     baseURL: "https://tutorgurus-backend-l63x.onrender.com/",
 //     headers: {
 //       Authorization: `Bearer ${token}`,
 //     },
@@ -102,4 +102,3 @@ const tabs = ref(1)
   min-width: 80%;
 }
 </style>
-

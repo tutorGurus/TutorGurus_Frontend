@@ -1,69 +1,69 @@
 <script setup>
-import { ref, onMounted } from "vue";
-import { useRouter } from "vue-router";
+import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 
-const router = useRouter();
+const router = useRouter()
 
-const isEditing = ref(false);
-const data = ref({});
+const isEditing = ref(false)
+const data = ref({})
 
 const update = () => {
-  const { value: token } = useCookie("token");
-  $fetch("/user/v1/profile", {
-    method: "PATCH",
+  const { value: token } = useCookie('token')
+  $fetch('/user/v1/profile', {
+    method: 'PATCH',
     // baseURL: "http://localhost:8000",
-    baseURL: "https://tutorgurus-backend.onrender.com",
+    baseURL: 'https://tutorgurus-backend-l63x.onrender.com/',
     headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
     },
-    body: JSON.stringify(data.value),
+    body: JSON.stringify(data.value)
   })
     .then((response) => {
-      console.log(response);
-      if (response.status === "success") {
-        alert("修改成功!");
-        isEditing.value = false;
+      console.log(response)
+      if (response.status === 'success') {
+        alert('修改成功!')
+        isEditing.value = false
       }
     })
     .catch((error) => {
-      console.error(error);
-    });
-};
+      console.error(error)
+    })
+}
 
 const cancel = () => {
-  getUserData();
-  isEditing.value = false;
-};
+  getUserData()
+  isEditing.value = false
+}
 
 const getUserData = () => {
-  const { value: token } = useCookie("token");
+  const { value: token } = useCookie('token')
   $fetch(`/user/v1/profile`, {
     // baseURL: "http://localhost:8000",
-    baseURL: "https://tutorgurus-backend.onrender.com",
+    baseURL: 'https://tutorgurus-backend-l63x.onrender.com/',
     headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  }).then((response) => {
-    console.log(response);
-    if (response.status === "success") {
-      if (response.data.birthday !== "" || response.data.birthday !== null) {
-        response.data.birthday = response.data.birthday.substring(0, 10);
-      }
-      data.value = response.data;
+      Authorization: `Bearer ${token}`
     }
-  });
-};
+  }).then((response) => {
+    console.log(response)
+    if (response.status === 'success') {
+      if (response.data.birthday !== '' || response.data.birthday !== null) {
+        response.data.birthday = response.data.birthday.substring(0, 10)
+      }
+      data.value = response.data
+    }
+  })
+}
 
 onMounted(() => {
-  const { value: token } = useCookie("token");
+  const { value: token } = useCookie('token')
   if (!token) {
-    alert("請先登入會員");
-    router.push("/");
+    alert('請先登入會員')
+    router.push('/')
   } else {
-    getUserData();
+    getUserData()
   }
-});
+})
 </script>
 
 <template>

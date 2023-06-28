@@ -1,19 +1,19 @@
 <script setup>
-  const tutorStore = useTutorStore();
+const tutorStore = useTutorStore()
 
-  await useAsyncData('tutorInfo', async () => {
-    const { value: token } = useCookie("token");
-    const res = await $fetch(`/tutors/v1/profile/tutorBackground`, {
-        method: "GET",
-        baseURL: "https://tutorgurus-backend.onrender.com",
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-    });
-    tutorStore.setTutorData(res.data[0]);
-
-    return data;
+await useAsyncData('tutorInfo', async () => {
+  const { value: token } = useCookie('token')
+  const res = await $fetch(`/tutors/v1/profile/tutorBackground`, {
+    method: 'GET',
+    baseURL: 'https://tutorgurus-backend-l63x.onrender.com/',
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
   })
+  tutorStore.setTutorData(res.data[0])
+
+  return data
+})
 </script>
 
 <template>
@@ -23,6 +23,4 @@
   </v-container>
 </template>
 
-<style>
-
-</style>
+<style></style>

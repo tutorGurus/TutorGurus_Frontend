@@ -64,17 +64,7 @@
             required
           ></v-text-field>
           <v-select
-            :items="[
-              '國文',
-              '數學',
-              '英文',
-              '物理',
-              '化學',
-              '生物',
-              '地球科學',
-              '歷史',
-              '地理',
-            ]"
+            :items="['國文', '數學', '英文', '物理', '化學', '生物', '地球科學', '歷史', '地理']"
             v-model="data.teaching_category"
             label="教授科目"
             variant="outlined"
@@ -90,113 +80,113 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import { useRouter } from "vue-router";
-const router = useRouter();
-const data = ref({});
-const schoolName = ref("");
-const major = ref("");
+import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+const router = useRouter()
+const data = ref({})
+const schoolName = ref('')
+const major = ref('')
 
-const requiredRules = [(v) => !!v || "請填寫相關資訊！"];
+const requiredRules = [(v) => !!v || '請填寫相關資訊！']
 
 const register = () => {
-  const { value: token } = useCookie("token");
-  const dataPayload = data.value;
-  const schoolNamePayload = schoolName.value;
-  const majorPayload = major.value;
+  const { value: token } = useCookie('token')
+  const dataPayload = data.value
+  const schoolNamePayload = schoolName.value
+  const majorPayload = major.value
   if (!dataPayload.name) {
-    alert("請填寫姓名");
-    return;
+    alert('請填寫姓名')
+    return
   }
   if (!dataPayload.gender) {
-    alert("請選擇性別");
-    return;
+    alert('請選擇性別')
+    return
   }
   if (!dataPayload.phone) {
-    alert("請填寫聯絡電話");
-    return;
+    alert('請填寫聯絡電話')
+    return
   }
   if (!dataPayload.address) {
-    alert("請填寫居住地址");
-    return;
+    alert('請填寫居住地址')
+    return
   }
   if (!dataPayload.birthday.trim()) {
-    alert("請選擇生日");
-    return;
+    alert('請選擇生日')
+    return
   }
   if (!dataPayload.degree) {
-    alert("請填寫最高學歷");
-    return;
+    alert('請填寫最高學歷')
+    return
   }
   if (!schoolNamePayload) {
-    alert("請填寫學校名稱");
-    return;
+    alert('請填寫學校名稱')
+    return
   }
   if (!majorPayload) {
-    alert("請填寫科系名稱");
-    return;
+    alert('請填寫科系名稱')
+    return
   }
   if (!dataPayload.teaching_category) {
-    alert("請選擇教授科目");
-    return;
+    alert('請選擇教授科目')
+    return
   }
   const params = {
     ...dataPayload,
     school: schoolNamePayload,
-    major: majorPayload,
-  };
-  $fetch("/tutors/v1/register", {
-    method: "POST",
+    major: majorPayload
+  }
+  $fetch('/tutors/v1/register', {
+    method: 'POST',
     // baseURL: "http://localhost:8000",
-    baseURL: "https://tutorgurus-backend.onrender.com",
+    baseURL: 'https://tutorgurus-backend-l63x.onrender.com/',
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`
     },
-    body: JSON.stringify(params),
+    body: JSON.stringify(params)
   })
     .then((response) => {
-      console.log(response);
-      if (response.status === "success") {
-        alert("教師註冊成功!");
+      console.log(response)
+      if (response.status === 'success') {
+        alert('教師註冊成功!')
       }
-      router.push("/");
+      router.push('/')
     })
     .catch((error) => {
-      console.error(error);
-    });
-};
+      console.error(error)
+    })
+}
 
 const getUserData = () => {
-  const { value: token } = useCookie("token");
+  const { value: token } = useCookie('token')
 
   $fetch(`/user/v1/profile`, {
     // baseURL: "http://localhost:8000",
-    baseURL: "https://tutorgurus-backend.onrender.com",
+    baseURL: 'https://tutorgurus-backend-l63x.onrender.com/',
     headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  }).then((response) => {
-    console.log(response);
-    if (response.status === "success") {
-      if (response.data.birthday !== "" || response.data.birthday !== null) {
-        response.data.birthday = response.data.birthday.substring(0, 10);
-      }
-      data.value = response.data;
-      schoolName.value = response.data.school.schoolName;
-      major.value = response.data.school.major;
+      Authorization: `Bearer ${token}`
     }
-  });
-};
+  }).then((response) => {
+    console.log(response)
+    if (response.status === 'success') {
+      if (response.data.birthday !== '' || response.data.birthday !== null) {
+        response.data.birthday = response.data.birthday.substring(0, 10)
+      }
+      data.value = response.data
+      schoolName.value = response.data.school.schoolName
+      major.value = response.data.school.major
+    }
+  })
+}
 
 onMounted(() => {
-  const { value: token } = useCookie("token");
+  const { value: token } = useCookie('token')
   if (!token) {
-    alert("請先登入會員");
-    router.push("/");
+    alert('請先登入會員')
+    router.push('/')
   } else {
-    getUserData();
+    getUserData()
   }
-});
+})
 </script>
 
 <style scoped></style>
