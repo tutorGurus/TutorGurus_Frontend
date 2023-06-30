@@ -32,18 +32,9 @@
       <div class="text-center">
         <h1 class="text-h4 font-weight-black">精選課程</h1>
         <div class="d-flex justify-center pt-6 pb-12">
-          <v-btn
-            class="mx-2 text-button font-weight-black"
-            color="black"
-            rounded="xl"
-            >國中</v-btn
-          >
-          <v-btn class="mx-2 text-button font-weight-black" rounded="xl"
-            >高中</v-btn
-          >
-          <v-btn class="mx-2 text-button font-weight-black" rounded="xl"
-            >語言</v-btn
-          >
+          <v-btn class="mx-2 text-button font-weight-black" color="black" rounded="xl">國中</v-btn>
+          <v-btn class="mx-2 text-button font-weight-black" rounded="xl">高中</v-btn>
+          <v-btn class="mx-2 text-button font-weight-black" rounded="xl">語言</v-btn>
         </div>
       </div>
       <v-card
@@ -54,8 +45,110 @@
       >
         <v-row>
           <v-spacer></v-spacer>
-          <v-col cols="12" sm="4" lg="4" v-for="i in 3">
-            <Card />
+          <v-col cols="12" sm="4" lg="4">
+            <v-card class="rounded-xl">
+              <v-img src="/courses/teacher1.png" height="280px" cover>
+                <v-card-title class="text-white">
+                  <v-chip class="ma-2" color="#3BADEF">120 分鐘 </v-chip>
+                </v-card-title>
+              </v-img>
+
+              <v-card-title>
+                <v-chip size="small" class="mb-1">108 課綱</v-chip><br />
+                <h4>凱文數學 |<span class="caption">國二上學期</span></h4>
+              </v-card-title>
+
+              <v-card-subtitle class="d-flex mb-2">
+                <p>220 則+評論 ·</p>
+                <v-icon size="small" color="orange-lighten-2">mdi-star</v-icon>
+                <p>4.9</p>
+              </v-card-subtitle>
+              <v-card-subtitle> 單堂 <span>NT$ 1,600</span> </v-card-subtitle>
+
+              <v-card-actions class="my-3">
+                <v-btn class="rounded-xl" color="orange-lighten-2" variant="outlined" width="48%">
+                  查看介紹
+                </v-btn>
+                <v-btn
+                  class="rounded-xl text-white"
+                  color="orange-darken-1"
+                  variant="flat"
+                  width="48%"
+                >
+                  預約體驗
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+          <v-col cols="12" sm="4" lg="4">
+            <v-card class="rounded-xl">
+              <v-img src="/courses/teacher2.png" height="280px" cover>
+                <v-card-title class="text-white">
+                  <v-chip class="ma-2" color="#3BADEF">120 分鐘 </v-chip>
+                </v-card-title>
+              </v-img>
+
+              <v-card-title>
+                <v-chip size="small" class="mb-1">108 課綱 </v-chip><br />
+                <h4>劉茫生物 |<span class="caption">國一下學期</span></h4>
+              </v-card-title>
+
+              <v-card-subtitle class="d-flex mb-2">
+                <p>153 則+評論 ·</p>
+                <v-icon size="small" color="orange-lighten-2">mdi-star</v-icon>
+                <p>4.9</p>
+              </v-card-subtitle>
+              <v-card-subtitle> 單堂 <span>NT$ 1,500</span> </v-card-subtitle>
+
+              <v-card-actions class="my-3">
+                <v-btn class="rounded-xl" color="orange-lighten-2" variant="outlined" width="48%">
+                  查看介紹
+                </v-btn>
+                <v-btn
+                  class="rounded-xl text-white"
+                  color="orange-darken-1"
+                  variant="flat"
+                  width="48%"
+                >
+                  預約體驗
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+          <v-col cols="12" sm="4" lg="4">
+            <v-card class="rounded-xl">
+              <v-img src="/courses/teacher3.png" height="280px" cover>
+                <v-card-title class="text-white">
+                  <v-chip class="ma-2" color="#3BADEF">120 分鐘 </v-chip>
+                </v-card-title>
+              </v-img>
+
+              <v-card-title>
+                <v-chip size="small" class="mb-1">109 課綱 </v-chip><br />
+                <h4>呂傑歷史 |<span class="caption">國三下學期</span></h4>
+              </v-card-title>
+
+              <v-card-subtitle class="d-flex mb-2">
+                <p>180 則+評論 ·</p>
+                <v-icon size="small" color="orange-lighten-2">mdi-star</v-icon>
+                <p>4.9</p>
+              </v-card-subtitle>
+              <v-card-subtitle> 單堂 <span>NT$ 1,200</span> </v-card-subtitle>
+
+              <v-card-actions class="my-3">
+                <v-btn class="rounded-xl" color="orange-lighten-2" variant="outlined" width="48%">
+                  查看介紹
+                </v-btn>
+                <v-btn
+                  class="rounded-xl text-white"
+                  color="orange-darken-1"
+                  variant="flat"
+                  width="48%"
+                >
+                  預約體驗
+                </v-btn>
+              </v-card-actions>
+            </v-card>
           </v-col>
           <v-spacer></v-spacer>
         </v-row>
@@ -112,9 +205,7 @@
                   <v-img src="/reason/01.png"></v-img>
                 </v-avatar>
                 <div>
-                  <v-card-title class="text-h5 font-weight-black">
-                    優秀師資
-                  </v-card-title>
+                  <v-card-title class="text-h5 font-weight-black"> 優秀師資 </v-card-title>
                   <p class="px-4 pb-3">
                     平台師資豐富外，教師都們也都擁有豐富的教學經驗，讓學生們都能選擇到合適的教師
                   </p>
@@ -129,9 +220,7 @@
                   <v-img src="/reason/02.png"></v-img>
                 </v-avatar>
                 <div>
-                  <v-card-title class="text-h5 font-weight-black">
-                    客製化課程
-                  </v-card-title>
+                  <v-card-title class="text-h5 font-weight-black"> 客製化課程 </v-card-title>
                   <p class="px-4">可依照需求為學生調整與能力程度相符的課程</p>
                 </div>
               </div>
@@ -148,9 +237,7 @@
                   <v-img src="/reason/03.png"></v-img>
                 </v-avatar>
                 <div>
-                  <v-card-title class="text-h5 font-weight-black">
-                    上課時間彈性
-                  </v-card-title>
+                  <v-card-title class="text-h5 font-weight-black"> 上課時間彈性 </v-card-title>
                   <p class="px-4">選擇最符合自身的上課時段，學習效率 Up !</p>
                 </div>
               </div>
@@ -163,12 +250,8 @@
                   <v-img src="/reason/04.png"></v-img>
                 </v-avatar>
                 <div>
-                  <v-card-title class="text-h5 font-weight-black">
-                    購課彈性
-                  </v-card-title>
-                  <p class="px-4">
-                    無入會費與年費綁約機制，單堂購入，學習選擇彈性多元
-                  </p>
+                  <v-card-title class="text-h5 font-weight-black"> 購課彈性 </v-card-title>
+                  <p class="px-4">無入會費與年費綁約機制，單堂購入，學習選擇彈性多元</p>
                 </div>
               </div>
             </v-card>
@@ -193,40 +276,26 @@
           <v-spacer></v-spacer>
           <v-col cols="12" md="3">
             <v-card class="rounded-lg pa-4" height="100%">
-              <v-card-title class="ps-0 text-h5 font-weight-black">
-                嚴選教師
-              </v-card-title>
+              <v-card-title class="ps-0 text-h5 font-weight-black"> 嚴選教師 </v-card-title>
               <p>家教/補習班相關教學經驗超過一年，才能進入面試階段</p>
             </v-card>
           </v-col>
           <v-col cols="12" md="3">
             <v-card class="rounded-lg pa-4" height="100%">
-              <v-card-title class="ps-0 text-h5 font-weight-black">
-                細心篩選
-              </v-card-title>
-              <p>
-                經過專業的師資團模擬學生上課情境測試，通過後才會進到下一階段
-              </p>
+              <v-card-title class="ps-0 text-h5 font-weight-black"> 細心篩選 </v-card-title>
+              <p>經過專業的師資團模擬學生上課情境測試，通過後才會進到下一階段</p>
             </v-card>
           </v-col>
           <v-col cols="12" md="3">
             <v-card class="rounded-lg pa-4" height="100%">
-              <v-card-title class="ps-0 text-h5 font-weight-black">
-                培訓合格教師
-              </v-card-title>
-              <p>
-                平台專業的師資教練團會針對專業科目、心理學、教學技巧培訓師資
-              </p>
+              <v-card-title class="ps-0 text-h5 font-weight-black"> 培訓合格教師 </v-card-title>
+              <p>平台專業的師資教練團會針對專業科目、心理學、教學技巧培訓師資</p>
             </v-card>
           </v-col>
           <v-col cols="12" md="3">
             <v-card class="rounded-lg pa-4" height="100%">
-              <v-card-title class="ps-0 text-h5 font-weight-black">
-                持續翻轉
-              </v-card-title>
-              <p>
-                平台每半年會審核、協助師資擁有更豐富、更符合學生需求的上課模式/教材
-              </p>
+              <v-card-title class="ps-0 text-h5 font-weight-black"> 持續翻轉 </v-card-title>
+              <p>平台每半年會審核、協助師資擁有更豐富、更符合學生需求的上課模式/教材</p>
             </v-card>
           </v-col>
           <v-spacer></v-spacer>
@@ -296,22 +365,17 @@
 
 <style scoped>
 .banner-bg {
-  background-image: url("/banner/bg.png");
+  background-image: url('/banner/bg.png');
   background-size: contain;
 }
 
 .courses-bg {
-  background-image: url("/courses/bg.png");
+  background-image: url('/courses/bg.png');
   background-size: contain;
 }
 
 .comment-bg {
-  background: linear-gradient(
-    180deg,
-    #fdf0e7 0%,
-    #fdf0e7 59.9%,
-    rgba(253, 240, 231, 0) 100%
-  );
+  background: linear-gradient(180deg, #fdf0e7 0%, #fdf0e7 59.9%, rgba(253, 240, 231, 0) 100%);
 }
 
 .comment-relative {
@@ -330,7 +394,7 @@
   z-index: 0;
 }
 .teacher-bg {
-  background-image: url("/footer/bg.png");
+  background-image: url('/footer/bg.png');
   background-size: contain;
 }
 </style>
