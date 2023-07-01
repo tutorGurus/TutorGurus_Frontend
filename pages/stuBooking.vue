@@ -56,13 +56,15 @@ const lastWeek = () => {
 
 }
 
-const days = ref(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']);
+const days = ref(['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']);
 const currentWeekDates = ref(getCurrentWeekDates());
 const timeSlots = ref([
   '09:00',
   '10:00',
   '11:00',
-  '12:00'
+  '12:00',
+  '13:00',
+  '14:00'
 ]);
 
 const bookings = ref([]);
@@ -205,9 +207,9 @@ const exampleBookings = ref([{ day: '6/28', timeSlot: '09:00' }]);
           </div>
 
           <div class="mb-10">
-          <v-row justify="center" align="center" class="mt-5">
-            <v-btn color="#fb8c00" @click="lastWeek">上一週</v-btn>
-            <v-btn color="#fb8c00" @click="nextWeek">下一週</v-btn>
+          <v-row justify="space-between" align="center" class="mt-5">
+            <v-btn color="orange-darken-1" @click="lastWeek" >上一週</v-btn>
+            <v-btn color="orange-darken-1" @click="nextWeek">下一週</v-btn>
           </v-row>
           <v-table>
             <thead>
@@ -250,16 +252,6 @@ const exampleBookings = ref([{ day: '6/28', timeSlot: '09:00' }]);
         </v-col>
 
       </v-row>
-    </v-container>
-    <v-container>
-      <h2 class="text-center mb-10">
-        其他人也看了這些課程
-      </h2>
-      <div class="d-flex">
-        <v-col cols="12" sm="4" lg="4" v-for="i in 3">
-          <Card />
-        </v-col>
-      </div>
     </v-container>
   </div>
 </template>

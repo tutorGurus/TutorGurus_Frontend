@@ -28,7 +28,7 @@
                   <span>{{ item[6] }}</span>
                 </div>
                 <v-spacer />
-                <v-btn color="primary" text @click="showDialog(index)"> 學生資訊 </v-btn>
+                <v-btn color="orange-darken-2" text @click="showDialog(index)"> 學生資訊 </v-btn>
 
                 <v-dialog v-model="dialog" width="auto">
                   <v-card>
