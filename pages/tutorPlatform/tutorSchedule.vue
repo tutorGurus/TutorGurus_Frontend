@@ -5,7 +5,7 @@
         <v-row>
           <v-col cols="6">
             <v-row>
-              <h3>每週固定課表</h3>
+              <h3>每週排程時段</h3>
               <v-data-table
                 :headers="headers"
                 :items="result"
@@ -17,13 +17,13 @@
               </v-data-table>
             </v-row>
             <v-row justify="end">
-              <v-btn color="primary" @click="dialog = true">Edit</v-btn>
+              <v-btn color="orange-darken-2" @click="dialog = true">編輯</v-btn>
               <!-- <v-btn color="primary" @click="getUserData">Test</v-btn> -->
             </v-row>
 
             <v-dialog v-model="dialog" width="800px">
               <v-card width="800px">
-                <v-card-title class="headline">Weekly Schedule</v-card-title>
+                <v-card-title class="headline">每週排程時間</v-card-title>
                 <v-card-text>
                   <div v-for="(day, name) in weeklySchedule" :key="day">
                     <v-row>
@@ -35,7 +35,7 @@
                           v-model="day.startTime"
                           :items="hours_list"
                           :disabled="!day.open"
-                          label="Start"
+                          label="起始時間"
                         />
                       </v-col>
                       <v-col cols="3">
@@ -43,7 +43,7 @@
                           v-model="day.endTime"
                           :items="hours_list"
                           :disabled="!day.open"
-                          label="End"
+                          label="結束時間"
                         />
                       </v-col>
                     </v-row>
@@ -51,33 +51,33 @@
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="green darken-1" text @click="dialog = false">Close</v-btn>
-                  <v-btn color="green darken-1" text @click="updateWeekSchedule">Save</v-btn>
+                  <v-btn color="green darken-1" text @click="dialog = false">關閉</v-btn>
+                  <v-btn color="green darken-1" text @click="updateWeekSchedule">儲存</v-btn>
                 </v-card-actions>
               </v-card>
             </v-dialog>
           </v-col>
 
           <v-col>
-            <h3>特定日期課表</h3>
+            <h3>特定日期排程時段</h3>
             <client-only>
               <Calendar @dayclick="showDate" />
             </client-only>
 
             <v-row>
               <v-col cols="6">
-                <v-text-field label="Selected Date" v-model="selectedDate" readonly />
+                <v-text-field label="選擇時間" v-model="selectedDate" readonly />
               </v-col>
             </v-row>
             <v-row>
               <v-col cols="3">
-                <v-select v-model="startTime" :items="hours_list" label="StartTime"></v-select>
+                <v-select v-model="startTime" :items="hours_list" label="起始時間"></v-select>
               </v-col>
 
               <v-col cols="3">
-                <v-select v-model="endTime" :items="hours_list" label="EndTime"></v-select>
+                <v-select v-model="endTime" :items="hours_list" label="結束時間"></v-select>
               </v-col>
-              <v-btn color="primary" @click="schedule_date">Save</v-btn>
+              <v-btn color="orange-darken-2" @click="schedule_date">新增</v-btn>
             </v-row>
 
             <!--v-card show specific date-->
@@ -86,9 +86,10 @@
                 <v-card class="mb-2">
                   <v-card-text class="d-flex align-center">
                     <!-- {{ item }} -->
-                    Date: {{ item.datestr }} Time: {{ item.time }}
+                    <div> 日期: {{ item.datestr }}    </div>
+                    <div> 時間: {{ item.time }} </div>
                     <v-spacer />
-                    <v-btn color="primary" @click="remove_specific_date(index)">Delete</v-btn>
+                    <v-btn color="orange-darken-2" @click="remove_specific_date(index)">刪除</v-btn>
                   </v-card-text>
                 </v-card>
               </v-col>
@@ -105,22 +106,22 @@ import { Calendar } from 'v-calendar'
 import { VDataTable } from 'vuetify/labs/VDataTable'
 
 const headers = ref([
-  { title: 'Week', align: 'end', key: 'week' },
-  { title: 'TimeSlot', align: 'end', key: 'timeslot' }
+  { title: '星期', align: 'end', key: 'week' },
+  { title: '時段', align: 'end', key: 'timeslot' }
 ])
 
-const week_str = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+const week_str = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
 let respRoutineTime = reactive([])
 let result = reactive([])
 
 let weeklySchedule = reactive({
-  Monday: { open: false, startTime: '', endTime: '' },
-  Tuesday: { open: false, startTime: '', endTime: '' },
-  Wednesday: { open: false, startTime: '', endTime: '' },
-  Thursday: { open: false, startTime: '', endTime: '' },
-  Friday: { open: false, startTime: '', endTime: '' },
-  Saturday: { open: false, startTime: '', endTime: '' },
-  Sunday: { open: false, startTime: '', endTime: '' }
+  星期一: { open: false, startTime: '', endTime: '' },
+  星期二: { open: false, startTime: '', endTime: '' },
+  星期三: { open: false, startTime: '', endTime: '' },
+  星期四: { open: false, startTime: '', endTime: '' },
+  星期五: { open: false, startTime: '', endTime: '' },
+  星期六: { open: false, startTime: '', endTime: '' },
+  星期日: { open: false, startTime: '', endTime: '' }
 })
 
 let selectedDate = ref('')
@@ -238,7 +239,7 @@ function remove_specific_date(index) {
 function getUserData() {
   const { value: token } = useCookie('token')
 
-  $fetch(`/tutors/v1/scheduleV?year=2023&startMonth=6&endMonth=6`, {
+  $fetch(`/tutors/v1/scheduleV?year=2023&startMonth=6&endMonth=7`, {
     // baseURL: "http://localhost:8000",
     baseURL: 'https://tutorgurus-backend-l63x.onrender.com/',
     headers: {
@@ -260,7 +261,7 @@ function getUserData() {
     }
     // console.log('respRoutineTime', respRoutineTime);
     Object.entries(respRoutineTime).map(([key, value]) => {
-      let timeslot = value[0][0] && value[0][1] ? `${value[0][0]}~${value[0][1]}` : 'close'
+      let timeslot = value[0][0] && value[0][1] ? `${value[0][0]}~${value[0][1]}` : '不開放'
       let output = {
         week: week_str[key],
         timeslot: timeslot
